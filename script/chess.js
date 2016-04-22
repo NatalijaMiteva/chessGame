@@ -27,8 +27,8 @@ Chessboard.prototype.reset = function() {
     this.set(0, 0, new Rook(WHITE, "&#9814", 1));
     this.set(0, 1, new Knight(WHITE, "&#9816;", 1));
     this.set(0, 2, new Laufer(WHITE, "&#9815;", 1));
-    this.set(0, 3, new Queen(WHITE, "&#9812"));
-    this.set(0, 4, new King(WHITE, "&#9813"));
+    this.set(0, 3, new Queen(WHITE, "&#9813"));
+    this.set(0, 4, new King(WHITE, "&#9812"));
     this.set(0, 5, new Laufer(WHITE, "&#9815;", 2));
     this.set(0, 6, new Knight(WHITE, "&#9816;", 2));
     this.set(0, 7, new Rook(WHITE, "&#9814", 2));
@@ -120,7 +120,7 @@ Chessboard.prototype.play = function(name) {
     drawChessboard(chessboard,name);
     var flag = true;
     timeOut = setInterval(function() {
-        //console.log("" + c);
+        //console.log("" + chessboard);
         var availableMoves = chessboard.moves();
         var whiteMoves = availableMoves.filter(
             function(value) {
@@ -142,12 +142,15 @@ Chessboard.prototype.play = function(name) {
             nextMove = Math.floor(Math.random() * blackMoves.length);
             flag = chessboard.makeMove(blackMoves[nextMove], "black", name);
         }
+        drawFigures(chessboard, name, flag);
         if (!flag) {
             clearTimeout(timeOut);
+            var gameOver= document.createElement('p');
+        gameOver.innerHTML="Game Over";
+        document.body.appendChild(gameOver);
         }
         chessboard.turn = !chessboard.turn;
-        drawFigures(chessboard, name);
-    }, 3);
+    }, 500);
 }
 
 // ===== Common Types ======
@@ -438,7 +441,7 @@ function drawChessboard(c,name) {
     drawFigures(c, name);
 }
 
-function drawFigures(c, name){
+function drawFigures(c, name, flag){
     for (var i = 8; i > 0; i--){
         for (var j = 0; j < 8; j++) {
             var q = '#' + name + '>table>tr>td>#' + (String.fromCharCode(j + 65) + i);
@@ -450,5 +453,8 @@ function drawFigures(c, name){
                 span.innerHTML="";
             }
         }
+    }
+    if(!flag){
+        
     }
 }
