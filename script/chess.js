@@ -454,7 +454,4 @@ function drawFigures(c, name, flag){
             }
         }
     }
-    if(!flag){
-        
-    }
 }
