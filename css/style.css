@@ -25,3 +25,8 @@ span{
 .table{
     padding-left: 350px;
 }
+
+.hovered{
+    background-color: lightblue;
+}
+
