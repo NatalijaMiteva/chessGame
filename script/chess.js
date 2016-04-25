@@ -16,6 +16,8 @@ function Chessboard() {
     this.reset();
 }
 
+
+
 Chessboard.prototype.reset = function() {
     var i;
     this.turn = true;
