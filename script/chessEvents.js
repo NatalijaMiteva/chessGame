@@ -476,8 +476,7 @@ function hover(i,j, c){
 
 function notHover(i,j, c){
     var currentMoves = c.moves();
-    var currentFigure = c.at(i,j);
-   
+    var currentFigure = c.at(i,j);   
     var currentMoves = currentMoves.filter(function(value) {
     var str = value.fig+"";
         if(str == currentFigure){
@@ -485,11 +484,10 @@ function notHover(i,j, c){
         }
     });
         if(currentMoves.length!=0){
-            //console.log(currentMoves[0])
             for(var j=0;j<currentMoves.length;j++){
                var m =  document.getElementById(String.fromCharCode(currentMoves[j].to.col + 65) + (currentMoves[j].to.row+1));
              // alert(m.parentElement.classList);
-        }
+            }
         }
         
 }
